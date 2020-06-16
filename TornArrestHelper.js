@@ -2,8 +2,10 @@
 // @name         Torn Arrest Helper
 // @version      1.2
 // @description  Helps find likely arrest targets from the hospital page
-// @author       SixPraxis - [860380]
+// @author       HotSoup [860380]
 // @match        https://www.torn.com/hospitalview.php*
+// @updateURL    https://raw.githubusercontent.com/SixPraxis/TornScripts/master/TornArrestHelper.js
+// @downloadURL  https://raw.githubusercontent.com/SixPraxis/TornScripts/master/TornArrestHelper.js
 // ==/UserScript==
 
 (function() {

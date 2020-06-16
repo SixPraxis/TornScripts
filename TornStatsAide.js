@@ -2,8 +2,10 @@
 // @name         Torn Personal Stats Aide
 // @version      1.0
 // @description  Displays total of a stat within the selected time frame
-// @author       SixPraxis - [860380]
+// @author       HotSoup [860380]
 // @match        https://www.torn.com/personalstats.php*
+// @updateURL    https://raw.githubusercontent.com/SixPraxis/TornScripts/master/TornStatsAide.js
+// @downloadURL  https://raw.githubusercontent.com/SixPraxis/TornScripts/master/TornStatsAide.js
 // ==/UserScript==
 (function() {
     'use strict';
