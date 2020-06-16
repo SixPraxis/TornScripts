@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Torn Personal Stats Aide
-// @version      1.0
+// @version      1.0.1
 // @description  Displays total of a stat within the selected time frame
 // @author       HotSoup [860380]
 // @match        https://www.torn.com/personalstats.php*
