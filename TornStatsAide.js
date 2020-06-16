@@ -10,7 +10,7 @@
 (function() {
     'use strict';
 
-    var debug = true;
+    var debug = false;
 
     function debugLog(logMessage){
     	if (debug){
@@ -59,7 +59,6 @@
     	timeSetting = document.getElementsByClassName("toggler")[0].innerHTML;
     	statSetting = document.getElementsByClassName("toggler")[1].innerHTML;
     	playerId = document.getElementsByClassName("user___1Fh_v")[0].innerHTML.match(/(?<=\[).+?(?=\])/);
-    	debugLog("FUNCTION - calcDiff - playerId: " + playerId);
 
     	let table = document.getElementsByTagName("tbody")[0];
     	let date1 = table.getElementsByTagName("tr")[0].getElementsByTagName("td")[0].innerHTML;
@@ -102,7 +101,6 @@
     function checkForTable(){
     	debugLog("FUNCTION - checkForTable");
     	let table = document.getElementsByTagName("tbody");
-    	debugLog("FUNCTION - checkForTable - Length of table: " + table.length);
     	if (table.length > 0){
     		observer.disconnect();
     		calcDiff();
