@@ -13,5 +13,5 @@ __________
 __________
 ### Torn Travel Profit
 (Python) Downloads the lowest current bazaar price for flowers and plushies then does the math to provide the profit per minute, total profit, and trip time of each item. The items are sorted by profit per minute. This does require your Torn API key to make the bazaar price requests. There are options for item capacity and to decrease flight times if you have an airstrip.
-![Torn Travel Profit output]
-(https://github.com/SixPraxis/TornScripts/blob/master/images/travelProfit.png)
+
+![Torn Travel Profit output](https://raw.github.com/SixPraxis/TornScripts/master/images/travelProfit.png)
