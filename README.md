@@ -12,9 +12,7 @@ __________
 ![Filter button up top, jailed graph button next to the reason](https://raw.githubusercontent.com/SixPraxis/TornScripts/master/images/filterExample.png)
 __________
 ### Torn Travel Profit
-Dependencies: requests
-
-(Python) Downloads the lowest current bazaar price for flowers and plushies then does the math to provide the profit per minute, total profit, and trip time of each item. The items are sorted by profit per minute. This does require your Torn API key to make the bazaar price requests. There are options for item capacity and to decrease flight times if you have an airstrip. The requests package available on pip is required.
+(Python) Downloads the lowest current bazaar price for flowers and plushies then does the math to provide the profit per minute, total profit, and trip time of each item. The items are sorted by profit per minute. This does require your Torn API key to make the bazaar price requests. Settings file is created on the first run, with API key, item capacity, and airstrip options. A stand-alone windows executable is available under the releases tab. If you choose not to use the executable, the only dependency for the script is the 'requests' package that is available from pip.
 
 ![Torn Travel Profit output](https://raw.github.com/SixPraxis/TornScripts/master/images/travelProfit.png)
 __________
