@@ -1,10 +1,8 @@
 import requests
 import json
+import os
+from sys import exit
 from operator import itemgetter
-
-apiKey = "PutYourAPIKeyHere"
-capacity = 19 # Change this number to the number of items you can carry per flight
-airstrip = False # Change this to True if you have a PI with an airstrip
 
 #Flight Times
 argentinaTime = 167
@@ -51,27 +49,92 @@ flowers = [dahlia, crocus, bananaOrchid, orchid, edelweiss, ceibo, heather,
 
 plushies = [jaguar, wolverine, stingray, chamois, monkey, nessie, redfox, lion, panda, camel]
 
-if airstrip:
-    for f in flowers:
-        f[5] = int(round(f[5] * 0.7))
-    for p in plushies:
-        p[5] = int(round(p[5] * 0.7))
+def getSettings():
+    apiKey = "NONE"
+    capacity = 0
+    airstrip = False
+    
+    if os.path.exists(os.path.join(os.path.dirname(os.path.realpath(__file__)), 'ttpSettings.txt')):
+        try:
+            settingsFile = open(os.path.join(os.path.dirname(os.path.realpath(__file__)), 'ttpSettings.txt'))
+            settingsContent = settingsFile.readlines()
+            settingsFile.close()
+        except Exception as err:
+            print("Error reading file..")
+            print(str(err))
+            input()
 
-def retrieveValues(targetList):
+        apiKey = settingsContent[0].split('=')[1].strip()
+        capacity = int(settingsContent[1].split('=')[1].strip())
+        airstrip = settingsContent[2].split('=')[1].strip()
+
+        if airstrip == "true" or airstrip == "True":
+            airstrip = True
+        if airstrip == "false" or airstrip == "False":
+            airstrip = False
+    else:
+        print("No settings file detected..")
+        print("Please enter your Torn API key: ")
+        apiKey = input()
+        print("How many items can you carry?")
+        capacity = int(input())
+        print("Do you own a PI airstrip? y/n")
+        airstripYN = input()
+        
+        if airstripYN == "y" or airstripYN == "Y" or airstripYN == "yes" or airstripYN == "Yes" or airstripYN == "YES":
+            airstrip = True
+
+        print("API Key: " + str(apiKey))
+        print("Capacity: " + str(capacity))
+        print("Airstrip: " + str(airstrip))
+        print("Creating settings file..")
+        try:
+            settingsFile = open(os.path.join(os.path.dirname(os.path.realpath(__file__)), 'ttpSettings.txt'), 'w')
+            settingsFile.write('apiKey = ' + apiKey + "\n")
+            settingsFile.write('capacity = ' + str(capacity) + "\n")
+            settingsFile.write('airstrip = ' + str(airstrip))
+            settingsFile.close()
+            print("Any of these settings can be changed in the 'ttpSettings.txt' file.")
+        except Exception as err:
+            print("Error creating file..")
+            print(str(err))
+            input()
+            exit()
+
+    return apiKey, capacity, airstrip
+
+
+def retrieveValues(targetList, settings):
     for x in targetList:
-        res = requests.get("http://api.torn.com/market/" + str(x[1]) + 
-            "?selections=&key=" + apiKey)
-        res.raise_for_status()
+        print('Requesting data for item: ' + str(x[1]) + ' (' + str(x[0]) + ')' + '..')
+        try:
+            res = requests.get("http://api.torn.com/market/" + str(x[1]) + 
+                "?selections=&key=" + settings[0])
+            res.raise_for_status()
+        except Exception as err:
+            print("Connection to Torn failed, please try again..")
+            input()
+            exit()
+
         result = json.loads(res.text)
-        x[3] = int(result['bazaar'][0]['cost'])
+        try:
+            x[3] = int(result['bazaar'][0]['cost'])
+        except KeyError:
+            print("API Key is invalid!\nPlease edit the settings file with a valid key.")
+            print(result)
+            print("Press any key to exit..")
+            input()
+            exit()
 
 def calcProfits(targetList):
     for x in targetList:
         x[4] = x[3] - x[2]
         x[6] = x[4]/(x[5]*2)
 
-retrieveValues(flowers)
-retrieveValues(plushies)
+settings = getSettings()
+
+retrieveValues(flowers, settings)
+retrieveValues(plushies, settings)
 
 calcProfits(flowers)
 calcProfits(plushies)
@@ -79,19 +142,26 @@ calcProfits(plushies)
 flowers.sort(key=itemgetter(6), reverse=True)
 plushies.sort(key=itemgetter(6), reverse=True)
 
-print('---Cap: ' + str(capacity) + '-------------FLOWERS-----------------------')
+if settings[2]:
+    for f in flowers:
+        f[5] = int(round(f[5] * 0.7))
+    for p in plushies:
+        p[5] = int(round(p[5] * 0.7))
+
+print()
+print('---Cap: ' + str(settings[1]) + '-------------FLOWERS-----------------------')
 print('{:<18s}{:^12s}{:>12s}{:>9s}'.format('Flower', 'Profit/Min', 'TotalProfit', 'TripTime'))
 print('-' * 53)
 for x in flowers:
-    print('{:<18s}{:>9s}{:>14s}{:>10s}'.format(x[0],"${:,.0f}".format(x[6]*capacity), "${:,.0f}".format(x[4]*capacity), str(x[5]*2//60) + "hr " + str(x[5]*2%60) +"mn"))
+    print('{:<18s}{:>9s}{:>14s}{:>10s}'.format(x[0],"${:,.0f}".format(x[6]*settings[1]), "${:,.0f}".format(x[4]*settings[1]), str(x[5]*2//60) + "hr " + str(x[5]*2%60) +"mn"))
 
 print('')
 
-print('---Cap: ' + str(capacity) + '-------------PLUSHIE-----------------------')
+print('---Cap: ' + str(settings[1]) + '-------------PLUSHIE-----------------------')
 print('{:<18s}{:^12s}{:>12s}{:>9s}'.format('Plushie', 'Profit/Min', 'TotalProfit', 'TripTime'))
 print('-' * 53)
 
 for x in plushies:
-    print('{:<18s}{:>9s}{:>14s}{:>10s}'.format(x[0],"${:,.0f}".format(x[6]*capacity), "${:,.0f}".format(x[4]*capacity), str(x[5]*2//60) + "hr " + str(x[5]*2%60) +"mn"))
+    print('{:<18s}{:>9s}{:>14s}{:>10s}'.format(x[0],"${:,.0f}".format(x[6]*settings[1]), "${:,.0f}".format(x[4]*settings[1]), str(x[5]*2//60) + "hr " + str(x[5]*2%60) +"mn"))
 	
 input()
