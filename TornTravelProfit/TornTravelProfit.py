@@ -136,17 +136,17 @@ settings = getSettings()
 retrieveValues(flowers, settings)
 retrieveValues(plushies, settings)
 
-calcProfits(flowers)
-calcProfits(plushies)
-
-flowers.sort(key=itemgetter(6), reverse=True)
-plushies.sort(key=itemgetter(6), reverse=True)
-
 if settings[2]:
     for f in flowers:
         f[5] = int(round(f[5] * 0.7))
     for p in plushies:
         p[5] = int(round(p[5] * 0.7))
+
+calcProfits(flowers)
+calcProfits(plushies)
+
+flowers.sort(key=itemgetter(6), reverse=True)
+plushies.sort(key=itemgetter(6), reverse=True)
 
 print()
 print('---Cap: ' + str(settings[1]) + '-------------FLOWERS-----------------------')
