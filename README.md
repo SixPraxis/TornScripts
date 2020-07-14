@@ -2,7 +2,7 @@
 Miscellaneous scripts for Torn.com
 
 ### Torn Personal Stats Aide
-(Userscript) Displays the graph data on the personal stats page in text form for quick reading.
+(Userscript) Displays the graph data on the personal stats page in text form for quick reading. Also adds a profile links to the users section.
 
 ![Text is added to the title bar above the graph](https://raw.githubusercontent.com/SixPraxis/TornScripts/master/images/aideComparison.png)
 __________
