@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Torn Personal Stats Aide
-// @version      1.0.1
+// @version      1.1.0
 // @description  Displays total of a stat within the selected time frame
 // @author       HotSoup [860380]
 // @match        https://www.torn.com/personalstats.php*
@@ -88,6 +88,14 @@
     	}
     }
 
+    function addProfileLink(){
+        let userDivs = document.getElementsByClassName("user___1Fh_v");
+        for (let i = 0; i < userDivs.length; i++){
+            let userID = userDivs[i].innerHTML.match(/(?<=\[).+?(?=\])/)
+            userDivs[i].innerHTML = '<a href="https://www.torn.com/profiles.php?XID=' + userID + '">' + userDivs[i].innerHTML + "</a>";
+        }
+    }
+
     function observeDiv(){
     	debugLog("FUNCTION - observeDiv");
     	let reactDiv = document.getElementById("react-root");
@@ -104,6 +112,7 @@
     	if (table.length > 0){
     		observer.disconnect();
     		calcDiff();
+            addProfileLink();
     	}
     }
 

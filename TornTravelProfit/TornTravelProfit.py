@@ -21,27 +21,27 @@ ukTime = 159
 # item = ['Name', itemNumber, cost, BazaarPrice, Profit(BazaarPrice-cost), flightMinutes, perMinuteProfit]
 dahlia = ['Dahlia-MEX', 260, 300, None, None, mexicoTime, None]
 crocus = ['Crocus-CAN', 263, 600, None, None, canadaTime, None]
-bananaOrchid = ["Banana Orchid-CAY", 617, 4000, None, None, caymanTime, None]
+bananaOrchid = ["Banana Orchid-CYM", 617, 4000, None, None, caymanTime, None]
 orchid = ["Orchid-HAW", 264, 700, None, None, hawaiiTime, None]
 edelweiss = ["Edelweiss-SWI", 272, 900, None, None, switzerlandTime, None]
 ceibo = ["Ceibo-ARG", 271, 500, None, None, argentinaTime, None]
 heather = ["Heather-UK", 267, 5000, None, None, ukTime, None]
-cherryBlossom = ["Cherry Blossom-JAP", 277, 500, None, None, japanTime, None]
+cherryBlossom = ["Cherry Blossom-JPN", 277, 500, None, None, japanTime, None]
 africanViolet = ["African Violet-SAF", 282, 2000, None, None, safricaTime, None]
-peony = ["Peony-CHI", 276, 5000, None, None, chinaTime, None]
+peony = ["Peony-CHN", 276, 5000, None, None, chinaTime, None]
 tribulus = ["Tribulus-UAE", 385, 6000, None, None, uaeTime, None]
 
 # Plushies
 # item = ['Name', itemNumber, cost, BazaarPrice, Profit(BazaarPrice-cost), flightMinutes, perMinuteProfit]
 jaguar = ['Jaguar-MEX', 258, 10000, None, None, mexicoTime, None]
 wolverine = ['Wolverine-CAN', 261, 30, None, None, canadaTime, None]
-stingray = ["Stingray-CAY", 618, 400, None, None, caymanTime, None]
+stingray = ["Stingray-CYM", 618, 400, None, None, caymanTime, None]
 chamois = ["Chamois-SWI", 273, 400, None, None, switzerlandTime, None]
 monkey = ["Monkey-ARG", 269, 400, None, None, argentinaTime, None]
 nessie = ["Nessie-UK", 266, 200, None, None, ukTime, None]
 redfox = ["Red Fox-UK", 268, 1000, None, None, ukTime, None]
 lion = ["Lion-SAF", 281, 400, None, None, safricaTime, None]
-panda = ["Panda-CHI", 274, 400, None, None, chinaTime, None]
+panda = ["Panda-CHN", 274, 400, None, None, chinaTime, None]
 camel = ["Camel-UAE", 384, 14000, None, None, uaeTime, None]
 
 flowers = [dahlia, crocus, bananaOrchid, orchid, edelweiss, ceibo, heather,
@@ -131,6 +131,7 @@ def calcProfits(targetList):
         x[4] = x[3] - x[2]
         x[6] = x[4]/(x[5]*2)
 
+print("Torn Travel Profit")
 settings = getSettings()
 
 retrieveValues(flowers, settings)
