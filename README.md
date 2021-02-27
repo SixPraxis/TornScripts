@@ -1,7 +1,8 @@
 # TornScripts
 Miscellaneous scripts for Torn.com
 
-### Torn Personal Stats Aide
+### Torn Personal Stats Aide - CURRENTLY BROKEN
+Recent UI updates on Torn have caused this to not work. Fix coming soon.
 (Userscript) Displays the graph data on the personal stats page in text form for quick reading. Also adds profile links to the users section.
 
 ![Text is added to the title bar above the graph](https://raw.githubusercontent.com/SixPraxis/TornScripts/master/images/aideComparison.png)
