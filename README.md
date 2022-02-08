@@ -2,7 +2,7 @@
 Miscellaneous scripts for Torn.com
 
 ### Arrestcalc.py
-Copy and paste all of your "attack arrest" logs into a file called arrests.txt and run the script while it's in the same folder as the txt file. Provides total arrests made, average reward, total reward, energy spent, money per energy, and money per 150 energy. You can get your attack arrest logs by click your top-right log, clicking view log, then changing "All logs" to "Attack arrest". Scroll down until it stops loading more logs, then find any "## similar" buttons and click those to expand them. Copy everything into the text file.
+Copy and paste all of your "attack arrest" logs into a file called arrests.txt and run the script while it's in the same folder as the txt file. Provides total arrests made, average reward, total reward, energy spent, money per energy, and money per 150 energy. You can get your attack arrest logs by click your top-right log, clicking view log, then changing "All logs" to "Attack arrest". Scroll down until it stops loading more logs, then find any "## similar" buttons and click those to expand them. Copy everything into the arrests.txt file.
 
 ### Torn Personal Stats Aide - CURRENTLY BROKEN
 Recent UI updates on Torn have caused this to not work. Fix coming soon.
